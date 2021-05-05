@@ -1,5 +1,7 @@
 {
   "name": "calor-I",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

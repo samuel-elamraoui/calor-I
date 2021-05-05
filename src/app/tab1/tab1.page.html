@@ -1,17 +1,50 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Préparer
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Selectionnez vos critères</ion-card-title>
+    </ion-card-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-label>Enseigne</ion-label>
+                <ion-select [(ngModel)]="supermarketSelected">
+                  <ion-select-option *ngFor="let superMarket of supermarketList" [value]="superMarket.id">
+                    {{superMarket.name}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-label>Categorie</ion-label>
+                <ion-select [(ngModel)]="supermarketSelected" (ionChange)=setProductSelected()>
+                  <ion-select-option *ngFor="let product of productList" [value]="product.id">
+                    {{product.name}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
 </ion-content>
