@@ -1,18 +1,18 @@
-import {MarketCategory, ProductCategory} from '../interface/category.interface';
+import {MarketCategory, NutriscoreCategory, ProductCategory} from '../interface/category.interface';
 
 
 export const marketCategory: MarketCategory[] = [
   {
     id: 'intermarche',
-    name: 'intermarche'
+    name: 'Intermarche'
   },
   {
     id: 'casino',
-    name: 'casino'
+    name: 'Casino'
   },
   {
     id: 'carrefour',
-    name: 'carrefour'
+    name: 'Carrefour'
   },
 ];
 export const productCategory: ProductCategory[] = [
@@ -27,6 +27,32 @@ export const productCategory: ProductCategory[] = [
   {
     id: 'desserts',
     name: 'desserts'
+  },
+];
+export const nutriscoreCategories: NutriscoreCategory[] = [
+  {
+    id: 'all',
+    name: 'Tous'
+  },
+  {
+    id: 'a',
+    name: 'A'
+  },
+  {
+    id: 'b',
+    name: 'B'
+  },
+  {
+    id: 'c',
+    name: 'C'
+  },
+  {
+    id: 'd',
+    name: 'D'
+  },
+  {
+    id: 'e',
+    name: 'E'
   },
 ];
 

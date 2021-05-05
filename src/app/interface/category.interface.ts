@@ -6,3 +6,16 @@ export interface ProductCategory {
   id: string;
   name: string;
 }
+export interface NutriscoreCategory {
+  id: string;
+  name: string;
+}
+
+export interface ResultResearch {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  nutriscoreGrade: string;
+}
+

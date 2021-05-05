@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Préparer
+      Que vend mes enseignes
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -30,12 +30,20 @@
           <ion-col>
             <ion-list>
               <ion-item>
-                <ion-label>Categorie</ion-label>
-                <ion-select [(ngModel)]="supermarketSelected" (ionChange)=setProductSelected()>
-                  <ion-select-option *ngFor="let product of productList" [value]="product.id">
-                    {{product.name}}
+                <ion-label>Nutriscore</ion-label>
+                <ion-select [(ngModel)]="nutriscoreListSelected" (ionChange)=setProductSelected()>
+                  <ion-select-option *ngFor="let nutriscore of nutriscoreList" [value]="nutriscore.id">
+                    {{nutriscore.name}}
                   </ion-select-option>
                 </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-label>Nombre à afficher</ion-label>
+                <ion-input type="number" [(ngModel)]="resultNumberDisplay" (ionChange)=setProductSelected()></ion-input>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -45,6 +53,47 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Résultats
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4" *ngFor="let item of resultDisplay">
+            <ion-list >
+              <ion-card style="max-height: 350px; min-height: 350px">
+                <img src="{{item.image}}" style="width: 100%; object-fit: contain; max-height: 100px; margin-top: 1rem"/>
+                <ion-card-header>
+                  <ion-card-subtitle>Nutriscore : {{item.nutriscoreGrade.toUpperCase()}}</ion-card-subtitle>
+                  <ion-card-title>{{item.name}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content *ngIf="item.description; else elseBlock">
+                  {{item.description}}
+                </ion-card-content>
+                <ng-template #elseBlock>
+                  <ion-card-content style="font-style: italic; color: darkgrey">
+                    Aucune decription est liée au produit
+                  </ion-card-content>
+                </ng-template>
+                <ion-row>
+                  <ion-col size="6">
+                    <ion-button expand="full" color="warning">Voir détails</ion-button>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-button expand="full" color="warning" (click)="addToCart(item)">Ajouter</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-card>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 
+  
 
 </ion-content>

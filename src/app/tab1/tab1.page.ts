@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { marketCategory, productCategory } from '../filters/filters';
-import { MarketCategory, ProductCategory } from '../interface/category.interface';
+import {marketCategory, nutriscoreCategories, productCategory} from '../filters/filters';
+import {MarketCategory, NutriscoreCategory, ProductCategory, ResultResearch} from '../interface/category.interface';
 import {ProductService} from '../services/products.service';
 
 
@@ -14,16 +14,52 @@ export class Tab1Page implements OnInit {
   supermarketList: MarketCategory[] = [];
   supermarketSelected: any;
   productList: ProductCategory[] = [];
-  productSelected: any;
+  nutriscoreList: NutriscoreCategory[] = [];
+  nutriscoreListSelected: any;
+  resultDisplay: ResultResearch[];
+  cart: ResultResearch[];
+  resultNumberDisplay: number;
+  info: boolean;
   constructor(private productService: ProductService) {}
   ngOnInit() {
     this.supermarketList = marketCategory;
     this.productList = productCategory;
-
+    this.nutriscoreList = nutriscoreCategories;
+    this.resultDisplay = [];
+    this.resultNumberDisplay = 10;
+    this.cart = [];
+    this.info = false;
   }
   setProductSelected(){
-    this.productService.getProductSelected(this.supermarketSelected,this.productSelected).subscribe((result) => {
-      console.log(result);
+    if (this.supermarketSelected) {
+      // eslint-disable-next-line max-len
+      this.productService.getProductSelected(this.supermarketSelected,this.nutriscoreListSelected, this.resultNumberDisplay).subscribe((result) => {
+        console.log(result);
+        this.resultDisplay = [];
+        for (let i = 0; i < this.resultNumberDisplay; i++) {
+          this.resultDisplay.push(
+            {
+              id: result.products[i].id,
+              name: result.products[i].product_name_fr,
+              image: result.products[i].image_url,
+              nutriscoreGrade: result.products[i].nutriscore_grade,
+              description: result.products[i].generic_name_fr,
+            });
+        }
+      });
+    }
+  }
+  addToCart(item){
+    console.log(item);
+    this.cart.push({
+      id: item.id,
+      name: item.name,
+      image: item.image,
+      nutriscoreGrade: item.nutriscoreGrade,
+      description: item.description,
     });
+    console.log(this.cart);
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    console.log(JSON.parse(localStorage.getItem('cart')));
   }
 }
