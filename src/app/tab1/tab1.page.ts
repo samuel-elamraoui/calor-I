@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {marketCategory, nutriscoreCategories, productCategory} from '../filters/filters';
-import {MarketCategory, NutriscoreCategory, ProductCategory, ResultResearch} from '../interface/category.interface';
+import {MarketCategory, NutriscoreCategory, ProductCategory, ResultResearch,ValidateCart} from '../interface/category.interface';
 import {ProductService} from '../services/products.service';
 
 
@@ -12,12 +12,14 @@ import {ProductService} from '../services/products.service';
 export class Tab1Page implements OnInit {
 
   supermarketList: MarketCategory[] = [];
+  cartName: string;
   supermarketSelected: any;
   productList: ProductCategory[] = [];
   nutriscoreList: NutriscoreCategory[] = [];
   nutriscoreListSelected: any;
   resultDisplay: ResultResearch[];
   cart: ResultResearch[];
+  validateCart: ValidateCart[];
   resultNumberDisplay: number;
   info: boolean;
   constructor(private productService: ProductService) {}
@@ -28,6 +30,7 @@ export class Tab1Page implements OnInit {
     this.resultDisplay = [];
     this.resultNumberDisplay = 10;
     this.cart = [];
+    this.validateCart =[];
     this.info = false;
   }
   setProductSelected(){
@@ -58,8 +61,14 @@ export class Tab1Page implements OnInit {
       nutriscoreGrade: item.nutriscoreGrade,
       description: item.description,
     });
-    console.log(this.cart);
-    localStorage.setItem('cart', JSON.stringify(this.cart));
-    console.log(JSON.parse(localStorage.getItem('cart')));
+  }
+  validatingCart(){
+    this.validateCart.push({
+     cartName:this.cartName,
+      cart:this.cart,
+    });
+    localStorage.setItem('cart', JSON.stringify(this.validateCart));
+    this.cart = [];
+
   }
 }

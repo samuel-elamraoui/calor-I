@@ -18,4 +18,8 @@ export interface ResultResearch {
   image: string;
   nutriscoreGrade: string;
 }
+export interface ValidateCart {
+  cartName: string;
+  cart: ResultResearch[];
+}
 

@@ -7,11 +7,28 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-card *ngIf="cart!==null && cart.length !==0">
+    <ion-card-header>
+      <ion-card-title>Mon panier</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngFor="let item of cart">
+      <ion-list>
+        <ion-item>
+          <ion-label>Nom du panier : {{item.cartName}}</ion-label>
+        </ion-item>
+        <ion-card *ngFor="let list of item.cart">
+          <ion-card-title>{{list.name}}</ion-card-title>
+          <ion-card-content>
+            <img src="{{list.image}}" style="width: 100%; object-fit: contain; max-height: 100px; margin-top: 1rem"/>
+            <ion-label>Nutriscore: {{list.nutriscoreGrade}}</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="cart ===null">
+    <ion-card-header>
+      <ion-card-title>Votre panier est vide</ion-card-title>
+    </ion-card-header>
+  </ion-card>
 </ion-content>
