@@ -10,10 +10,20 @@ import {ResultResearch, ValidateCart} from '../interface/category.interface';
 export class Tab2Page implements OnInit {
   cart: ValidateCart[];
   moyenneKcal: number;
+  nutriA: number;
+  nutriB: number;
+  nutriC: number;
+  nutriD: number;
+  nutriE: number;
 
   constructor() {
     this.cart = JSON.parse(localStorage.getItem('cart'));
     this.moyenneKcal = 0;
+    this.nutriA = 0;
+    this.nutriB = 0;
+    this.nutriC = 0;
+    this.nutriD = 0;
+    this.nutriE = 0;
   }
 
   ngOnInit() {
@@ -23,6 +33,7 @@ export class Tab2Page implements OnInit {
         if (this.cart[i].cart[j].energyKcal100g) {
           this.moyenneKcal += parseInt(this.cart[i].cart[j].energyKcal100g)
         }
+        switch (this.)
         if (j == this.cart[i].cart.length - 1) {
           console.log(this.moyenneKcal)
           this.moyenneKcal = parseFloat((this.moyenneKcal / j).toFixed(2));
