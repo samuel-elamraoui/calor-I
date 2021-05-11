@@ -17,9 +17,11 @@ export interface ResultResearch {
   description: string;
   image: string;
   nutriscoreGrade: string;
+  energyKcal100g: string;
 }
 export interface ValidateCart {
   cartName: string;
   cart: ResultResearch[];
 }
+
 

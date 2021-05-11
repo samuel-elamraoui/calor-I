@@ -1,26 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Les paniers
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngIf="cart!==null && cart.length !==0">
-    <ion-card-header>
-      <ion-card-title>Mon panier</ion-card-title>
-    </ion-card-header>
+  <ion-card *ngIf="cart && cart.length !==0" style="width: 50%; margin: auto">
     <ion-card-content *ngFor="let item of cart">
       <ion-list>
         <ion-item>
-          <ion-label>Nom du panier : {{item.cartName}}</ion-label>
+          <ion-card-title style="margin: 2rem">Nom du panier : {{item.cartName}}</ion-card-title>
+          <ion-card-title style="margin: 2rem">Energie (Kcal / 100g) du menu total : {{moyenneKcal}}</ion-card-title>
         </ion-item>
         <ion-card *ngFor="let list of item.cart">
-          <ion-card-title>{{list.name}}</ion-card-title>
+                    <ion-card-title style="margin-left: 2rem; margin-top: 2rem; text-align: center">{{list.name}}</ion-card-title>
+          <ion-card-header>
+            <ion-card-subtitle>
+                    <span *ngIf="list.nutriscoreGrade === 'a'"><img style="max-height: 50px"
+                                                                    src="../../assets/images/Nutri-score-A.svg"
+                                                                    alt="NutriA"/></span>
+              <span *ngIf="list.nutriscoreGrade === 'b'"><img style="max-height: 50px"
+                                                              src="../../assets/images/Nutri-score-B.svg"
+                                                              alt="NutriB"></span>
+              <span *ngIf="list.nutriscoreGrade === 'c'"><img style="max-height: 50px"
+                                                              src="../../assets/images/Nutri-score-C.svg"
+                                                              alt="NutriC"></span>
+              <span *ngIf="list.nutriscoreGrade === 'd'"><img style="max-height: 50px"
+                                                              src="../../assets/images/Nutri-score-D.svg"
+                                                              alt="NutriD"></span>
+              <span *ngIf="list.nutriscoreGrade === 'e'"><img style="max-height: 50px"
+                                                              src="../../assets/images/Nutri-score-E.svg"
+                                                              alt="NutriE"></span>
+            </ion-card-subtitle>
+          </ion-card-header>
           <ion-card-content>
-            <img src="{{list.image}}" style="width: 100%; object-fit: contain; max-height: 100px; margin-top: 1rem"/>
-            <ion-label>Nutriscore: {{list.nutriscoreGrade}}</ion-label>
+            <img src="{{list.image}}" style="width: 100%; object-fit: contain; max-height: 100px;"/>
           </ion-card-content>
         </ion-card>
       </ion-list>

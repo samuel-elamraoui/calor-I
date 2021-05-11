@@ -1,3 +1,23 @@
 .item-select {
   width: auto;
 }
+.icon {
+  transition-duration: 0.5s;
+}
+
+.cardClick {
+  max-height: 350px;
+  min-height: 350px;
+  text-align: center;
+  transition-duration: 0.5s;
+  &:hover {
+    cursor: pointer;
+    background-color: #cacaca;
+    .icon{
+      transform: rotate(90deg);
+      color: white;
+    }
+  }
+
+}
+
