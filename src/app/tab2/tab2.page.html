@@ -7,15 +7,46 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngIf="cart && cart.length !==0" style="width: 50%; margin: auto">
+  <ion-card *ngIf="cart && cart.length !==0" style="width: 80%; margin: auto">
     <ion-card-content *ngFor="let item of cart">
       <ion-list>
         <ion-item>
           <ion-card-title style="margin: 2rem">Nom du panier : {{item.cartName}}</ion-card-title>
+        </ion-item>
+        <ion-item>
           <ion-card-title style="margin: 2rem">Energie (Kcal / 100g) du menu total : {{moyenneKcal}}</ion-card-title>
         </ion-item>
+        <ion-item>
+          <ion-card-title style="margin: 2rem">Résumé nutriscore</ion-card-title>
+          <br>
+          <ion-card style="background-color: #038141; color: white">
+            <ion-card-content style="font-weight: bold; text-align: center">
+              Nutriscore A : {{nutriA}}
+            </ion-card-content>
+          </ion-card>
+          <ion-card style="background-color: #85bb2f; color: white">
+            <ion-card-content  style="font-weight: bold; text-align: center">
+              Nutriscore B : {{nutriB}}
+            </ion-card-content>
+          </ion-card>
+          <ion-card style="background-color: #fecb02; color: white">
+            <ion-card-content style="font-weight: bold; text-align: center">
+              Nutriscore C : {{nutriC}}
+            </ion-card-content>
+          </ion-card>
+          <ion-card style="background-color: #ee8100; color: white">
+            <ion-card-content style="font-weight: bold; text-align: center">
+              Nutriscore D : {{nutriD}}
+            </ion-card-content>
+          </ion-card>
+          <ion-card style="background-color: #e63e11; color: white">
+            <ion-card-content style="font-weight: bold; text-align: center">
+              Nutriscore E : {{nutriE}}
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
         <ion-card *ngFor="let list of item.cart">
-                    <ion-card-title style="margin-left: 2rem; margin-top: 2rem; text-align: center">{{list.name}}</ion-card-title>
+          <ion-card-title style="margin-left: 2rem; margin-top: 2rem; text-align: center">{{list.name}}</ion-card-title>
           <ion-card-header>
             <ion-card-subtitle>
                     <span *ngIf="list.nutriscoreGrade === 'a'"><img style="max-height: 50px"

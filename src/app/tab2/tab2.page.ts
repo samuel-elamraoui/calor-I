@@ -31,11 +31,28 @@ export class Tab2Page implements OnInit {
     for (let i = 0; i < this.cart.length; i++) {
       for (let j = 0; j < this.cart[i].cart.length; j++) {
         if (this.cart[i].cart[j].energyKcal100g) {
-          this.moyenneKcal += parseInt(this.cart[i].cart[j].energyKcal100g)
+          this.moyenneKcal += parseInt(this.cart[i].cart[j].energyKcal100g);
         }
-        switch (this.)
-        if (j == this.cart[i].cart.length - 1) {
-          console.log(this.moyenneKcal)
+        switch (this.cart[i].cart[j].nutriscoreGrade) {
+          case 'a':
+            this.nutriA ++;
+            break
+          case 'b':
+            this.nutriB ++;
+            break
+          case 'c':
+            this.nutriC ++;
+            break
+          case 'd':
+            this.nutriD ++;
+            break
+          case 'e':
+            this.nutriE ++;
+            break
+
+        }
+        if (j === this.cart[i].cart.length - 1) {
+          console.log(this.moyenneKcal);
           this.moyenneKcal = parseFloat((this.moyenneKcal / j).toFixed(2));
         }
       }
